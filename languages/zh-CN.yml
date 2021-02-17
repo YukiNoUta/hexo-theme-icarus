@@ -30,6 +30,7 @@ article:
     more: '阅读更多'
     comments: '评论'
     read_time: '%s读完'
+    edited: '编辑于'
     word_count:
         one: '大约%d个字'
         other: '大约%d个字'

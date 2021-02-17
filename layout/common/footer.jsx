@@ -5,14 +5,16 @@ class Footer extends Component {
     render() {
         const {
             logo,
-            logoUrl,
+            logoLightUrl,
+            logoDarkUrl,
             siteUrl,
             siteTitle,
             siteYear,
             author,
             links,
             showVisitorCounter,
-            visitorCounterTitle
+            visitorCounterTitle,
+            content
         } = this.props;
 
         let footerLogo = '';
@@ -20,7 +22,10 @@ class Footer extends Component {
             if (logo.text) {
                 footerLogo = logo.text;
             } else {
-                footerLogo = <img src={logoUrl} alt={siteTitle} height="28" />;
+                footerLogo = [
+                    <img class="logo-img" src={logoLightUrl} alt={siteTitle} height="28" />,
+                    <img class="logo-img-dark" src={logoDarkUrl} alt={siteTitle} height="28" />
+                ];
             }
         } else {
             footerLogo = siteTitle;
@@ -36,10 +41,11 @@ class Footer extends Component {
                         <p class="is-size-7">
                             <span dangerouslySetInnerHTML={{ __html: `&copy; ${siteYear} ${author || siteTitle}` }}></span>
                             &nbsp;&nbsp;Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>&nbsp;&&nbsp;
-                            <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a>
+                            <a href="https://github.com/YukiNoUta/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a>&nbsp;&nbsp;
                             {showVisitorCounter ? <br /> : null}
                             {showVisitorCounter ? <span id="busuanzi_container_site_uv"
                                 dangerouslySetInnerHTML={{ __html: visitorCounterTitle }}></span> : null}
+                            {content}  
                         </p>
                     </div>
                     <div class="level-end">
@@ -65,6 +71,17 @@ module.exports = cacheComponent(Footer, 'common.footer', props => {
     const { url_for, _p, date } = helper;
     const { logo, title, author, footer, plugins } = config;
 
+    const logoLight = logo instanceof String ? logo : logo.light
+    const logoDark = logo instanceof String ? logo : logo.dark
+
+    const content = footer.content.map(value => {
+        return <><br />
+        {typeof value === 'string' ?
+        <span dangerouslySetInnerHTML={{__html: value}}></span> :
+        <a href={value.href} target="_blank" dangerouslySetInnerHTML={{__html: value.html}}></a>}
+        </>
+    });
+
     const links = {};
     if (footer && footer.links) {
         Object.keys(footer.links).forEach(name => {
@@ -78,13 +95,15 @@ module.exports = cacheComponent(Footer, 'common.footer', props => {
 
     return {
         logo,
-        logoUrl: url_for(logo),
+        logoLightUrl: url_for(logoLight),
+        logoDarkUrl: url_for(logoDark),
         siteUrl: url_for('/'),
         siteTitle: title,
         siteYear: date(new Date(), 'YYYY'),
         author,
         links,
         showVisitorCounter: plugins && plugins.busuanzi === true,
-        visitorCounterTitle: _p('plugin.visitor_count', '<span id="busuanzi_value_site_uv">0</span>')
+        visitorCounterTitle: _p('plugin.visitor_count', '<span id="busuanzi_value_site_uv">0</span>'),
+        content
     };
 });

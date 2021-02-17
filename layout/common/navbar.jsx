@@ -17,7 +17,8 @@ class Navbar extends Component {
     render() {
         const {
             logo,
-            logoUrl,
+            logoLightUrl,
+            logoDarkUrl,
             siteUrl,
             siteTitle,
             menu,
@@ -25,7 +26,8 @@ class Navbar extends Component {
             showToc,
             tocTitle,
             showSearch,
-            searchTitle
+            searchTitle,
+            fixedTop
         } = this.props;
 
         let navbarLogo = '';
@@ -33,13 +35,16 @@ class Navbar extends Component {
             if (logo.text) {
                 navbarLogo = logo.text;
             } else {
-                navbarLogo = <img src={logoUrl} alt={siteTitle} height="28" />;
+                navbarLogo = [
+                    <img class="logo-img" src={logoLightUrl} alt={siteTitle} height="28" />,
+                    <img class="logo-img-dark" src={logoDarkUrl} alt={siteTitle} height="28" />
+                ];
             }
         } else {
             navbarLogo = siteTitle;
         }
 
-        return <nav class="navbar navbar-main">
+        return <nav class={`navbar navbar-main` + fixedTop}>
             <div class="container">
                 <div class="navbar-brand justify-content-center">
                     <a class="navbar-item navbar-logo" href={siteUrl}>
@@ -54,6 +59,13 @@ class Navbar extends Component {
                         })}
                     </div> : null}
                     <div class="navbar-end">
+                        {showToc ? <a class="navbar-item is-hidden-tablet catalogue" title={tocTitle} href="javascript:;">
+                            <i class="fas fa-list-ul"></i>
+                            <span>&nbsp;&nbsp;目录</span>
+                        </a> : null}
+                        <a class="navbar-item night" id="night-nav" title="Night Mode" href="javascript:;">
+                            <i class="fas fa-moon" id="night-icon"></i>
+                        </a>
                         {Object.keys(links).length ? <Fragment>
                             {Object.keys(links).map(name => {
                                 const link = links[name];
@@ -62,9 +74,6 @@ class Navbar extends Component {
                                 </a>;
                             })}
                         </Fragment> : null}
-                        {showToc ? <a class="navbar-item is-hidden-tablet catalogue" title={tocTitle} href="javascript:;">
-                            <i class="fas fa-list-ul"></i>
-                        </a> : null}
                         {showSearch ? <a class="navbar-item search" title={searchTitle} href="javascript:;">
                             <i class="fas fa-search"></i>
                         </a> : null}
@@ -80,8 +89,12 @@ module.exports = cacheComponent(Navbar, 'common.navbar', props => {
     const { url_for, _p, __ } = helper;
     const { logo, title, navbar, widgets, search } = config;
 
+    const logoLight = logo instanceof String ? logo : logo.light
+    const logoDark = logo instanceof String ? logo : logo.dark
+
     const hasTocWidget = Array.isArray(widgets) && widgets.find(widget => widget.type === 'toc');
     const showToc = (config.toc === true || page.toc) && hasTocWidget && ['page', 'post'].includes(page.layout);
+    const fixedTop = navbar.fixed ? ' is-fixed-top' : '';
 
     const menu = {};
     if (navbar && navbar.menu) {
@@ -106,7 +119,8 @@ module.exports = cacheComponent(Navbar, 'common.navbar', props => {
 
     return {
         logo,
-        logoUrl: url_for(logo),
+        logoLightUrl: url_for(logoLight),
+        logoDarkUrl: url_for(logoDark),
         siteUrl: url_for('/'),
         siteTitle: title,
         menu,
@@ -114,6 +128,7 @@ module.exports = cacheComponent(Navbar, 'common.navbar', props => {
         showToc,
         tocTitle: _p('widget.catalogue', Infinity),
         showSearch: search && search.type,
-        searchTitle: __('search.search')
+        searchTitle: __('search.search'),
+        fixedTop
     };
 });
