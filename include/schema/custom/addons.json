@@ -8,6 +8,12 @@
             "type": "boolean",
             "description": "import live 2D waifu at your page's right-buttom",
             "default": false
+        },
+        "pageVisitCount": {
+            "type": "string",
+            "enum": ["busuanzi", "twikoo"],
+            "description": "The visitor counter used in articles and pages",
+            "default": "busuanzi"
         }
     }
 }

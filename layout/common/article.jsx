@@ -20,13 +20,38 @@ function getWordCount(content) {
 module.exports = class extends Component {
     render() {
         const { config, helper, page, index } = this.props;
-        const { article, plugins } = config;
+        const { article, plugins, addons } = config;
         const { url_for, date, date_xml, __, _p } = helper;
 
         const indexLaunguage = config.language || 'en';
         const language = page.lang || page.language || config.language || 'en';
         const cover = page.cover ? url_for(page.cover) : null;
 
+        const pageVisitCounter = config => {
+            const icon_eye = '<i class="far fa-eye"></i>';
+            const icon_loading = '<i class="fa fa-spinner fa-spin"></i>';
+            if (config === 'busuanzi') {
+                return !index && plugins && plugins.busuanzi === true ? 
+                <span class="level-item" id="busuanzi_container_page_pv" 
+                    dangerouslySetInnerHTML={{ __html: icon_eye +  
+                    _p('plugin.visit_count', 
+                    '&nbsp;&nbsp;<span id="busuanzi_value_page_pv">' +
+                    icon_loading + '</span>'
+                )}}></span> : null;
+            }
+            else if (config === 'twikoo') { 
+                return !index ? <span 
+                id={url_for(page.link || page.path)} 
+                    class="level-item twikoo_visitors" 
+                    data-flag-title={page.title}
+                    dangerouslySetInnerHTML={{__html: icon_eye + 
+                        _p('plugin.visit_count', 
+                        '&nbsp;&nbsp;<span id="twikoo_visitors">' + 
+                        icon_loading + '</span>'
+                )}}></span> : null;
+            } else return null;
+        };
+    
         return <Fragment>
             {/* Main content */}
             <div class="card">
@@ -74,9 +99,7 @@ module.exports = class extends Component {
                                 })()}
                             </span> : null}
                             {/* Visitor counter */}
-                            {!index ? <span id={url_for(page.link || page.path)} class="level-item leancloud_visitors" data-flag-title={page.title} dangerouslySetInnerHTML={{
-                                __html: '<i class="far fa-eye"></i>' + _p('plugin.visit_count', '&nbsp;&nbsp;<span id="twikoo_visitors"><i class="fa fa-spinner fa-spin"></i></span>')
-                            }}></span> : null}
+                            {pageVisitCounter(addons.pageVisitCount)}
                         </div>
                     </div> : null}
                     {/* Title */}
