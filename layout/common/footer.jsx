@@ -23,8 +23,8 @@ class Footer extends Component {
                 footerLogo = logo.text;
             } else {
                 footerLogo = [
-                    <img class="logo-img" src={logoLightUrl} alt={siteTitle} height="28" />,
-                    <img class="logo-img-dark" src={logoDarkUrl} alt={siteTitle} height="28" />
+                    <img no-lazy class="logo-img" src={logoLightUrl} alt={siteTitle} height="28" />,
+                    <img no-lazy class="logo-img-dark" src={logoDarkUrl} alt={siteTitle} height="28" />
                 ];
             }
         } else {

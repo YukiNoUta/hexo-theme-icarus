@@ -299,9 +299,13 @@ night()
             color: rgb(203,186,125)
             background-color: dark-primary-color
 
+    // lazyload
+    .lazyload
+        filter: brightness(convert(hexo-config('color_scheme.dark.brightness'))) !important        
+
 body.night
     night()
 
 @media (prefers-color-scheme: dark)
     body:not(.light)
-        night()
+        night()        
