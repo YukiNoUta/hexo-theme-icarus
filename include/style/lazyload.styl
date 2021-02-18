@@ -1,0 +1,12 @@
+img
+    max-width 100%
+    &.lazyload:not(.placeholder)
+        transition all .5s ease-out 0s
+        &:not(.loaded)
+            opacity: 0
+            filter blur(8px)
+            filter none
+        &.loaded
+            opacity: 1
+        // if hexo-config('addons.lazyload.mode') == 'blurIn'
+

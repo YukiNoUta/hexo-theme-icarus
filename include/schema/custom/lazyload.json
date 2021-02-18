@@ -1,0 +1,38 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "/custom/lazyload.json",
+    "description": "Enable image lazy load by using vanilla-lazyload",
+    "type": "object",
+    "properties": {
+        "enable": {
+            "type": "boolean",
+            "description": "the switch of lazyload plugins",
+            "default": false
+        },
+        "js": {
+            "type": "string",
+            "description": "CDN url of vanilla-lazyload library",
+            "default": "https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.1.0/dist/lazyload.min.js"
+        },
+        "onlypost": {
+            "type": "boolean",
+            "description": "Process lazyload only for files with post layout",
+            "default": false
+        },
+        "palceholder": {
+            "type": "object",
+            "description": "[!Issue!] The placeholder while image is loading",
+            "properties": {
+                "mode": {
+                    "type": "string",
+                    "description": "The kind of loading image placeholer",
+                    "enum": ["blurIn", "image"]
+                },
+                "image": {
+                    "type": "string",
+                    "description": "placeholder image url when mode == 'image'"
+                }
+            }
+        }
+    }
+}
