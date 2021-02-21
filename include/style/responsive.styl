@@ -34,8 +34,25 @@
         .column-right-shadow
         .widget
             &.is-sticky
-                top: 5.5rem;   
+                top: 9rem; 
+        section 
+            .container
+                padding-top: 3.5rem;                     
+
++desktop()
+    .has-navbar-fixed-top
+        .column-main,
+        .column-left,
+        .column-right,
+        .column-right-shadow
+        .widget
+            &.is-sticky
+                top: 5.5rem;       
 
 +mobile()
     .section
         padding: 1.5rem 1rem
+    .has-navbar-fixed-top
+        section
+            .container
+                padding-top: 6.5rem;       
