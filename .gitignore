@@ -114,3 +114,7 @@ yarn.lock
 *.ipr
 *.iws
 *.iml
+
+# npm 
+package-lock.json
+yarn.lock
