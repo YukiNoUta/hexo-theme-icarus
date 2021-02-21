@@ -61,7 +61,6 @@ class Navbar extends Component {
                     <div class="navbar-end">
                         {showToc ? <a class="navbar-item is-hidden-tablet catalogue" title={tocTitle} href="javascript:;">
                             <i class="fas fa-list-ul"></i>
-                            <span>&nbsp;&nbsp;目录</span>
                         </a> : null}
                         <a class="navbar-item night" id="night-nav" title="Night Mode" href="javascript:;">
                             <i class="fas fa-moon" id="night-icon"></i>
