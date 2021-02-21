@@ -34,6 +34,11 @@ module.exports = class extends Component {
             <script src="/js/yuuki/lazyload_embedded.js"></script>
         </> : null;
 
+        const defaultPjax = "https://cdn.jsdelivr.net/npm/pjax/pjax.js";
+        const pjaxScripts = addons.pjax?.enable ? <>
+            <script src={addons.pjax?.js ?? defaultPjax}></script>
+        </> : null;    
+
         return <Fragment>
             <script src={cdn('jquery', '3.3.1', 'dist/jquery.min.js')}></script>
             <script src={cdn('moment', '2.22.2', 'min/moment-with-locales.min.js')}></script>
@@ -43,8 +48,9 @@ module.exports = class extends Component {
             <script dangerouslySetInnerHTML={{ __html: embeddedConfig }}></script>
             <script src={url_for('/js/column.js')}></script>
             <Plugins site={site} config={config} page={page} helper={helper} head={false} />
+            <script src={url_for("/js/yuuki/gallery.js")} defer></script>
             <script src={url_for('/js/main.js')} defer></script>
-            {lazyloadScripts}
+            {pjaxScripts}{lazyloadScripts}
         </Fragment>;
     }
 };

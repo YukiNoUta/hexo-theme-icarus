@@ -15,6 +15,7 @@ module.exports = class extends Component {
         const columnCount = Widgets.getColumnCount(config.widgets);
         const fixedTop = config.navbar.fixed ? ` has-navbar-fixed-top` : ``;
         const waifu =  config.addons.waifuLive2D;
+        const usePjax = config.addons.pjax.enable;
 
         return <html lang={language ? language.substr(0, 2) : ''}>
             <Head site={site} config={config} helper={helper} page={page} />
@@ -24,7 +25,7 @@ module.exports = class extends Component {
 
                 <Navbar config={config} helper={helper} page={page} />
                 <section class="section">
-                    <div class="container">
+                    <div class="container" id="pjax-container">
                         <div class="columns">
                             <div class={classname({
                                 column: true,
@@ -39,10 +40,11 @@ module.exports = class extends Component {
                         </div>
                     </div>
                 </section>
+
                 <Footer config={config} helper={helper} />
                 <Scripts site={site} config={config} helper={helper} page={page} />
                 <Search config={config} helper={helper} />
-
+                {usePjax && <script type="text/javascript" src="/js/yuuki/pjax.js"></script>}
                 <script type="text/javascript" src="/js/imaegoo/imaegoo.js"></script>
                 <script type="text/javascript" src="/js/imaegoo/universe.js"></script>
                 {waifu && <script type="text/javascript" src="/js/live2d/autoload.js"></script>}

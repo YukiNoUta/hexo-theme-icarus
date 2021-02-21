@@ -1,5 +1,6 @@
 /* eslint-disable node/no-unsupported-features/node-builtins */
-(function($, moment, ClipboardJS, config) {
+function mainJS($, moment, ClipboardJS, config) {
+    /*
     $('.article img:not(".not-gallery-item")').each(function() {
         // wrap images with link and add caption if possible
         if ($(this).parent('a').length === 0) {
@@ -19,6 +20,7 @@
         }
         $('.justified-gallery').justifiedGallery();
     }
+    */
 
     if (typeof moment === 'function') {
         $('.article-meta time').each(function() {
@@ -134,4 +136,7 @@
         $mask.on('click', toggleToc);
         $('.navbar-main .catalogue').on('click', toggleToc);
     }
-}(jQuery, window.moment, window.ClipboardJS, window.IcarusThemeSettings));
+}
+$(document).ready(() => {
+    mainJS(jQuery, window.moment, window.ClipboardJS, window.IcarusThemeSettings);
+});
