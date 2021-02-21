@@ -17,6 +17,22 @@
         },
         "lazyload": {
             "$ref": "/custom/lazyload.json"
+        },
+        "pjax": {
+            "type": "object",
+            "description": "Enable pjax in this site (Experimental)",
+            "properties": {
+                "enable": {
+                    "type": "boolean",
+                    "description": "Total switch for PJAX supports",
+                    "default": false
+                },
+                "js": {
+                    "type": "string",
+                    "description": "The URL or CDN to load pjax.js",
+                    "default": "https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.js"
+                }
+            }
         }
     }
 }
