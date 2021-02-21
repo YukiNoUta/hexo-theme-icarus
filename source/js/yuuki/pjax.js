@@ -28,13 +28,13 @@ function removeClipboard() {
 
 function pjaxJS($) {
     var pjax = new Pjax({
-        // elements: "a[data-pjax]",
         elements: 'a[href]:not([href^="#"]):not([href="javascript:void(0)"]):not(.paw-button)',
         selectors: [
             "title",
             ".column-main",
             "script[data-pjax]",
-            "#pjax-container"
+            "#pjax-container",
+            "#pjax-nav"
         ],
         switches: {
             ".column-main": function(oldEl, newEl, options) {
