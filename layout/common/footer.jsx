@@ -1,5 +1,6 @@
 const { Component } = require('inferno');
 const { cacheComponent } = require('hexo-component-inferno/lib/util/cache');
+const APlayer = require('../custom/aplayer');
 
 class Footer extends Component {
     render() {
@@ -14,7 +15,8 @@ class Footer extends Component {
             links,
             showVisitorCounter,
             visitorCounterTitle,
-            content
+            content,
+            aplayer
         } = this.props;
 
         let footerLogo = '';
@@ -59,6 +61,7 @@ class Footer extends Component {
                                 </p>;
                             })}
                         </div> : null}
+                        {aplayer?.enable && <APlayer config={aplayer} />}
                     </div>
                 </div>
             </div>
@@ -69,7 +72,7 @@ class Footer extends Component {
 module.exports = cacheComponent(Footer, 'common.footer', props => {
     const { config, helper } = props;
     const { url_for, _p, date } = helper;
-    const { logo, title, author, footer, plugins } = config;
+    const { logo, title, author, footer, plugins, aplayer } = config;
 
     const logoLight = logo instanceof String ? logo : logo.light
     const logoDark = logo instanceof String ? logo : logo.dark
@@ -104,6 +107,7 @@ module.exports = cacheComponent(Footer, 'common.footer', props => {
         links,
         showVisitorCounter: plugins && plugins.busuanzi === true,
         visitorCounterTitle: _p('plugin.visitor_count', '<span id="busuanzi_value_site_uv">0</span>'),
-        content
+        content, 
+        aplayer
     };
 });
