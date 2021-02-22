@@ -1,0 +1,88 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "/custom/aplayer.json",
+    "description": "The configuration of Aplayer settings",
+    "type": "object",
+    "properties": {
+        "enable": {
+            "type": "boolean",
+            "description": "The switch of Aplayer plugin",
+            "default": false
+        },
+        "js": {
+            "type": "object",
+            "description": "The necessary JS file URL for Aplayer",
+            "properties": {
+                "aplayer": {
+                    "type": "string",
+                    "description": "Aplayer.js URL/CDN link",
+                    "default": "https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"
+                },
+                "meting": {
+                    "type": "string",
+                    "description": "Meting.js URL/CDN Link, provided only in Mainland",
+                    "default": "https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"
+                }
+            }
+        },
+        "css": {
+            "type": "string",
+            "description": "CDN/URL for Aplayer's stylesheet",
+            "default": "https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css"
+        },
+        "id": {
+            "type": "string",
+            "description": "The id to fetch music resource at music platform"
+        },
+        "server": {
+            "type": "string",
+            "description": "The music provider in Mainland (Meting.js)",
+            "enum": ["netease", "tencent", "kugou", "baidu"],
+            "default": "netease"
+        },
+        "type": {
+            "type": "string",
+            "description": "Type of resource the id refer to",
+            "enum": ["song", "playlist", "album", "search", "artist"],
+            "default": "playlist"
+        },
+        "fixed": {
+            "type": "boolean",
+            "description": "Enable fix mode (There's also mini mode, but not compatible)",
+            "default": "true"
+        },
+        "loop": {
+            "type": "string",
+            "description": "The loop method Aplayer uses",
+            "enum": ["all", "one", "none"],
+            "default": "all"
+        },
+        "volumn": {
+            "type": "number",
+            "description": "The default volumn when first visit site",
+            "default": 0.7
+        },
+        "theme": {
+            "type": "string",
+            "description": "The main color Aplayer uses",
+            "default": "#2980b9"
+        },
+        "order": {
+            "type": "string",
+            "description": "The playing order when id refer to a playlist",
+            "enum": ["list", "random"],
+            "default": "list"
+        }, 
+        "mutex": {
+            "type": "boolean",
+            "description": "pause other players when this player start play",
+            "default": true
+        },
+        "autoplay": {
+            "type": "boolean",
+            "description": "Audio playing starts when Aplayer loaded",
+            "default": false
+        }
+    },
+    "required": ["id", "type"]
+}
