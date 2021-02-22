@@ -6,6 +6,7 @@ const Widgets = require('./common/widgets');
 const Footer = require('./common/footer');
 const Scripts = require('./common/scripts');
 const Search = require('./common/search');
+const APlayer = require('./custom/aplayer');
 
 module.exports = class extends Component {
     render() {
@@ -39,10 +40,10 @@ module.exports = class extends Component {
                         </div>
                     </div>
                 </section>
+                {config.aplayer?.enable && <APlayer config={config.aplayer} />}
                 <Footer config={config} helper={helper} />
                 <Scripts site={site} config={config} helper={helper} page={page} />
                 <Search config={config} helper={helper} />
-
                 <script type="text/javascript" src="/js/imaegoo/imaegoo.js"></script>
                 <script type="text/javascript" src="/js/imaegoo/universe.js"></script>
                 {waifu && <script type="text/javascript" src="/js/live2d/autoload.js"></script>}
