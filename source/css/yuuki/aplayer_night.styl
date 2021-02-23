@@ -1,0 +1,38 @@
+night()
+    // aplayer
+    .aplayer 
+    //   .aplayer-miniswitcher 
+    //       background: #c0c0c0 !important;
+        $border = 1px solid rgba(127, 127, 127, 0.5);
+        $bgcolor = rgb(32, 32, 32)
+
+        .aplayer-lrc p
+            text-shadow 0 0 1px #000 !important;
+            color: rgb(216, 216, 216) !important;
+
+        .aplayer-fixed
+            background: rgb(48, 48, 48) !important   
+            border-color rgb(56, 56, 56) !important   
+
+        .aplayer-list-light    
+            background: rgb(64, 64, 64) !important   
+
+        &.aplayer-withlist 
+            .aplayer-info 
+                border-bottom: $border;
+            
+        &.aplayer-fixed
+            .aplayer-list
+                border: $border;
+
+        .aplayer-body
+            background: $bgcolor;        
+
+        color: #eee !important 
+
+body.night
+    night()
+
+@media (prefers-color-scheme: dark)
+    body:not(.light)
+        night()  
