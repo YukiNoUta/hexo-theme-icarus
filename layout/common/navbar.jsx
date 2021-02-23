@@ -1,6 +1,7 @@
 const { Component, Fragment } = require('inferno');
 const { cacheComponent } = require('hexo-component-inferno/lib/util/cache');
 const classname = require('hexo-component-inferno/lib/util/classname');
+const MusicController = require('../custom/musiccontroller');
 
 function isSameLink(a, b) {
     function santize(url) {
@@ -27,7 +28,8 @@ class Navbar extends Component {
             tocTitle,
             showSearch,
             searchTitle,
-            fixedTop
+            fixedTop,
+            aplayer
         } = this.props;
 
         let navbarLogo = '';
@@ -43,6 +45,8 @@ class Navbar extends Component {
         } else {
             navbarLogo = siteTitle;
         }
+
+        const music = aplayer?.enable ?? false;
 
         return <nav class={`navbar navbar-main` + fixedTop}>
             <div class="container">
@@ -65,6 +69,7 @@ class Navbar extends Component {
                         <a class="navbar-item night" id="night-nav" title="Night Mode" href="javascript:;">
                             <i class="fas fa-moon" id="night-icon"></i>
                         </a>
+                        {music && <MusicController config={aplayer} />}
                         {Object.keys(links).length ? <Fragment>
                             {Object.keys(links).map(name => {
                                 const link = links[name];
@@ -86,7 +91,7 @@ class Navbar extends Component {
 module.exports = cacheComponent(Navbar, 'common.navbar', props => {
     const { config, helper, page } = props;
     const { url_for, _p, __ } = helper;
-    const { logo, title, navbar, widgets, search } = config;
+    const { logo, title, navbar, widgets, search, aplayer } = config;
 
     const logoLight = logo instanceof String ? logo : logo.light
     const logoDark = logo instanceof String ? logo : logo.dark
@@ -128,6 +133,7 @@ module.exports = cacheComponent(Navbar, 'common.navbar', props => {
         tocTitle: _p('widget.catalogue', Infinity),
         showSearch: search && search.type,
         searchTitle: __('search.search'),
-        fixedTop
+        fixedTop,
+        aplayer
     };
 });
