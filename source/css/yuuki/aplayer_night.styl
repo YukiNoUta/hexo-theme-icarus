@@ -7,7 +7,7 @@ night()
         $bgcolor = rgb(32, 32, 32)
 
         .aplayer-lrc p
-            text-shadow 0 0 1px #000 !important;
+            text-shadow 0 0 2px #000 !important;
             color: rgb(216, 216, 216) !important;
 
         .aplayer-fixed
@@ -23,10 +23,69 @@ night()
             
         &.aplayer-fixed
             .aplayer-list
-                border: $border;
+                border: none;
 
         .aplayer-body
-            background: $bgcolor;        
+            background: $bgcolor;   
+
+        .aplayer-info
+            border-top: none; 
+            .aplayer-music
+                .aplayer-author
+                    color: #AAA   
+
+        .aplayer-pic
+            .aplayer-play  
+            .aplayer-pause                
+                border: $border;
+
+        .aplayer-controller
+            .aplayer-bar
+                background: #444 !important
+                .aplayer-loaded
+                    background: #666 !important
+
+            .aplayer-time
+                color: #666
+
+                .aplayer-icon
+                    path 
+                        fill: #aaa
+                    &:hover
+                        path 
+                            fill: #fff
+
+            .aplayer-volume-wrap
+                .aplayer-volume-bar     
+                    background #666
+
+        .aplayer-list
+            backgtound: #222
+            &::-webkit-scrollbar-thumb
+                background-color: #111
+            &::-webkit-scrollbar-thumb:hover
+                background-color: #333 
+            ol 
+                background: #222
+            li
+                border-top: $border 
+                &:hover
+                    background: #121212
+                &.aplayer-list-light
+                    background: #222;    
+                .aplayer-list-index
+                .aplayer-list-author
+                    color: #aaa
+        .aplayer-notice
+
+        .aplayer-miniswitcher 
+            background: #1a1a1a
+            .aplayer-icon
+                path 
+                    fill: #aaa
+                &:hover
+                    path 
+                        fill: #fff
 
         color: #eee !important 
 
