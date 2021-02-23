@@ -5,8 +5,10 @@ const logger = require('hexo-log')();
  * Print welcome message
  */
 logger.info(`===================================
-iMaeGoo's Blog - Powered by Hexo & Icarus
+Shiraha's Blog - Powered by Hexo & Icarus
 =========================================`);
+
+logger.info(`♥ Made by Nanami with love ♥`);
 
 /**
  * Check if all dependencies are installed

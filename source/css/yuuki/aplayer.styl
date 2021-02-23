@@ -1,0 +1,31 @@
+.aplayer-container-hide-lrc    
+    .aplayer-narrow
+        -webkit-transform: translateX(-100%);
+        transform: translateX(-100%);
+
+    .aplayer-narrow:hover
+        -webkit-transform: translateX(0);
+        transform: translateX(0);
+
+.aplayer-narrow
+    .aplayer-body
+        -webkit-transform: translateX(-66px);
+        transform: translateX(-66px);
+
+.aplayer-narrow:hover
+    .aplayer-body
+        -webkit-transform: translateX(0);
+        transform: translateX(0);        
+
+.aplayer
+    transition: all .5s ease-out;
+
+.aplayer-lrc 
+    p
+        font-family: '"Noto Serif SC", "PingFang SC", "Microsoft YaHei"';
+        transition 0.1s all ease
+        -webkit-transition 0.1s all ease
+        text-shadow 0 0 2px #fff !important;
+        color: rgb(96, 96, 96) !important;
+    .aplayer-lrc-current
+        font-size: 16px !important;

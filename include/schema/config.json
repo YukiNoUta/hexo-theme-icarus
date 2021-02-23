@@ -81,6 +81,9 @@
         },
         "addons": {
             "$ref": "/custom/addons.json"
+        },
+        "aplayer": {
+            "$ref": "/custom/aplayer.json"
         }
     },
     "required": [

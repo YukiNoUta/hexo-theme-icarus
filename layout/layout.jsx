@@ -6,6 +6,7 @@ const Widgets = require('./common/widgets');
 const Footer = require('./common/footer');
 const Scripts = require('./common/scripts');
 const Search = require('./common/search');
+const APlayer = require('./custom/aplayer');
 
 module.exports = class extends Component {
     render() {
@@ -41,6 +42,7 @@ module.exports = class extends Component {
                     </div>
                 </section>
 
+                {config.aplayer?.enable && <APlayer config={config.aplayer} />}
                 <Footer config={config} helper={helper} />
                 <Scripts site={site} config={config} helper={helper} page={page} />
                 <Search config={config} helper={helper} />
