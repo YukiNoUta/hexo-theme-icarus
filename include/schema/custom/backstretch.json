@@ -1,0 +1,37 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "/custom/backstretch.json",
+    "description": "Use jQuery.backstretch to implement slide background images",
+    "type": "object",
+    "properties": {
+        "enable": {
+            "type": "boolean",
+            "description": "Switch of backstretch feature",
+            "default": false
+        },
+        "js": {
+            "type": "string",
+            "description": "The URL of jQuery.backstretch library",
+            "default": "https://cdn.jsdelivr.net/npm/jquery-backstretch@2.1.18/jquery.backstretch.min.js"
+        },
+        "shuffle": {
+            "type": "boolean",
+            "description": "shuffle the playlist randomly",
+            "default": true
+        },
+        "duration": {
+            "type": "integer",
+            "description": "Duration of a image, in 'ms'",
+            "default": 10000
+        },
+        "fade": {
+            "type": "integer",
+            "description": "Duration of fade transition, no more than 1500ms",
+            "default": 1500
+        },
+        "images": {
+            "type": "array",
+            "description": "URLs of images will use as background slide"
+        }
+    }
+}

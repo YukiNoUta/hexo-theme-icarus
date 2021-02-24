@@ -7,6 +7,7 @@ const Footer = require('./common/footer');
 const Scripts = require('./common/scripts');
 const Search = require('./common/search');
 const APlayer = require('./custom/aplayer');
+const Cover = require('./custom/cover');
 
 module.exports = class extends Component {
     render() {
@@ -16,12 +17,14 @@ module.exports = class extends Component {
         const columnCount = Widgets.getColumnCount(config.widgets);
         const fixedTop = config.navbar.fixed ? ` has-navbar-fixed-top` : ``;
         const waifu =  config.addons.waifuLive2D;
+        const cover = config.addons?.backstretch.enable ?? false;
 
         return <html lang={language ? language.substr(0, 2) : ''}>
             <Head site={site} config={config} helper={helper} page={page} />
             <body class={`is-${columnCount}-column` + fixedTop}>
                 <script type="text/javascript" src="/js/imaegoo/night.js"></script>
                 <canvas id="universe"></canvas>
+                {cover && <Cover config={config} />}
 
                 <Navbar config={config} helper={helper} page={page} />
                 <section class="section">
