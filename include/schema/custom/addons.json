@@ -32,7 +32,9 @@
                     "description": "The URL or CDN to load pjax.js",
                     "default": "https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.js"
                 }
-            }
+            },
+        "backstretch": {
+            "$ref": "/custom/backstretch.json"
         }
     }
 }

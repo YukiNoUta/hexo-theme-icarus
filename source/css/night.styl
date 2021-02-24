@@ -103,7 +103,7 @@ night()
         background-color: rgba(40,44,52,0.5)
         backdrop-filter: blur(10px)
         -webkit-backdrop-filter: blur(10px)
-        transition: 0.4s all ease !important
+        transition: 0.4s opacity ease-out
     .card
         &:hover
             background-color: rgba(40,44,52,0.8)
@@ -301,7 +301,11 @@ night()
 
     // lazyload
     .lazyload
-        filter: brightness(convert(hexo-config('color_scheme.dark.brightness'))) !important     
+        filter: brightness(convert(hexo-config('color_scheme.dark.brightness'))) !important  
+
+    // backstretch
+    #cover-backstretch
+        display: none           
 
 
 body.night
