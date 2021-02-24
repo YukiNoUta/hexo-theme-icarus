@@ -17,6 +17,9 @@
         },
         "lazyload": {
             "$ref": "/custom/lazyload.json"
+        },
+        "backstretch": {
+            "$ref": "/custom/backstretch.json"
         }
     }
 }
