@@ -58,7 +58,7 @@ class Navbar extends Component {
                             return <a class={classname({ 'navbar-item': true, 'is-active': item.active })} href={item.url}>{name}</a>;
                         })}
                     </div> : null}
-                    <div class="navbar-end">
+                    <div class="navbar-end" id="pjax-buttons">
                         {showToc ? <a class="navbar-item is-hidden-tablet catalogue" title={tocTitle} href="javascript:;">
                             <i class="fas fa-list-ul"></i>
                         </a> : null}

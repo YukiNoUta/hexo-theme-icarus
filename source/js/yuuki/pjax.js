@@ -34,7 +34,8 @@ function pjaxJS($) {
             ".column-main",
             "script[data-pjax]",
             "#pjax-container",
-            "#pjax-nav"
+            "#pjax-nav",
+            "#pjax-buttons"
         ],
         switches: {
             ".column-main": function(oldEl, newEl, options) {
@@ -54,6 +55,7 @@ function pjaxJS($) {
     document.addEventListener('pjax:complete', function () {
         loadJS();
         reloadDataPjax();
+        nightJS();
     });
 
     document.addEventListener('pjax:error', function () {
