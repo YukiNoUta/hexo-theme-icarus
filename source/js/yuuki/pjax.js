@@ -35,14 +35,13 @@ function removeToggleToc() {
 
 function removeBinding() {
     $('#night-nav').unbind('click');
-    $(window).unbind('resize');
     $(window).unbind('scroll');
     $(document).unbind('scroll');
     $('body').unbind('click');
 }
 
 function pjaxJS() {
-    var pjax = new Pjax({
+    window.pjaxInst = new Pjax({
         elements: 'a[href]:not([href^="#"]):not([href="javascript:void(0)"]):not(.paw-button)',
         selectors: [
             "title",
@@ -62,6 +61,7 @@ function pjaxJS() {
         scrollRestoration: true,
         debug: false
     })
+    var pjax = window.pjaxInst;
 
     document.addEventListener('pjax:send', function () {
         removeClipboard();
@@ -74,6 +74,10 @@ function pjaxJS() {
         loadJS();
         reloadDataPjax();
         nightJS();
+        var shadow = document.querySelectorAll('.column-right-shadow');
+        var links = document.querySelectorAll('.column-right-shadow a[data-pjax-state]');
+        links.forEach(el => el.removeAttribute('data-pjax-state'));
+        shadow.forEach(el => pjax.refresh(el));
     });
 
     document.addEventListener('pjax:error', function () {
