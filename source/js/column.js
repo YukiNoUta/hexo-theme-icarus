@@ -1,4 +1,4 @@
-(function() {
+function columnJS() {
     function $() {
         return Array.prototype.slice.call(document.querySelectorAll.apply(document, arguments));
     }
@@ -9,4 +9,6 @@
             $('.columns .column-right-shadow')[0].append(child.cloneNode(true));
         }
     }
-}());
+}
+
+columnJS();
