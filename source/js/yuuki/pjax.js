@@ -1,9 +1,6 @@
-function busuanziJS() {
+function loadJS() {
     $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
-}
-
-const loadJS = () => {
-    busuanziJS();
+    $.getScript("/js/toc.js", () => console.log('pjax: toc.js is reload'));
     backToTopJS();
     galleryJS(jQuery);
     mainJS(jQuery, window.moment, window.ClipboardJS, window.IcarusThemeSettings);
@@ -23,10 +20,28 @@ function removeClipboard() {
     if (typeof ClipboardJS !== 'undefined' && (on || fold)) {
         $('figcaption').each(
         function () {$(this).remove();});
+        window.clipInst && window.clipInst.destroy();
     }
 }
 
-function pjaxJS($) {
+function removeToggleToc() {
+    const $toc = $('#toc');
+    const $mask = $('#toc-mask');
+    $mask.remove();
+    $toc.removeClass('is-active');
+    $toc.unbind('click');
+    $('.navbar-main .catalogue').unbind('click');
+}
+
+function removeBinding() {
+    $('#night-nav').unbind('click');
+    $(window).unbind('resize');
+    $(window).unbind('scroll');
+    $(document).unbind('scroll');
+    $('body').unbind('click');
+}
+
+function pjaxJS() {
     var pjax = new Pjax({
         elements: 'a[href]:not([href^="#"]):not([href="javascript:void(0)"]):not(.paw-button)',
         selectors: [
@@ -34,7 +49,8 @@ function pjaxJS($) {
             ".column-main",
             "script[data-pjax]",
             "#pjax-container",
-            "#pjax-nav"
+            "#pjax-nav",
+            "#pjax-buttons"
         ],
         switches: {
             ".column-main": function(oldEl, newEl, options) {
@@ -49,11 +65,15 @@ function pjaxJS($) {
 
     document.addEventListener('pjax:send', function () {
         removeClipboard();
+        removeBinding();
+        removeToggleToc();
     });
 
     document.addEventListener('pjax:complete', function () {
+        columnJS();
         loadJS();
         reloadDataPjax();
+        nightJS();
     });
 
     document.addEventListener('pjax:error', function () {
