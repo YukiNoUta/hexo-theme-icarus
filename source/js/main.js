@@ -95,7 +95,15 @@ function mainJS($, moment, ClipboardJS, config) {
                 $(this).attr('id', id);
                 $(this).find('figcaption div.level-right').append(button);
             });
-            new ClipboardJS('.highlight .copy'); // eslint-disable-line no-new
+            window.clipInst = new ClipboardJS('.highlight .copy'); // eslint-disable-line no-new
+            clipInst.on('success', function (e) {
+                const { action, text, trigger } = e;
+                console.log('Successfully copy to clipboard!');
+                e.clearSelection();
+            });
+            clipInst.on('error', function (e) {
+                const { action, trigger } = e;
+            });
         }
 
         if (fold) {

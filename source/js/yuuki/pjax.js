@@ -20,6 +20,7 @@ function removeClipboard() {
     if (typeof ClipboardJS !== 'undefined' && (on || fold)) {
         $('figcaption').each(
         function () {$(this).remove();});
+        window.clipInst && window.clipInst.destroy();
     }
 }
 
@@ -34,7 +35,10 @@ function removeToggleToc() {
 
 function removeBinding() {
     $('#night-nav').unbind('click');
-    $('body').unbind();
+    $(window).unbind('resize');
+    $(window).unbind('scroll');
+    $(document).unbind('scroll');
+    $('body').unbind('click');
 }
 
 function pjaxJS() {
